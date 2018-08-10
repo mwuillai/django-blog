@@ -2,7 +2,7 @@
 
 {% block content %}
 {% load static %}
-    <!-- Page Content -->
+    <!-- Page Content -->    
     <div class="container-fluid">
         <div class="jumbotron" style="background: url('{% static 'blog/image/typewriter.jpg' %}')">
             <h1>Bootstrap Tutorial</h1>
@@ -10,8 +10,6 @@
             responsive, mobile-first projects on the web.</p>
         </div>
     </div>
-    
-
 {% for article in articles %}
     <div class="container article">
 
@@ -31,7 +29,7 @@
             <hr>
   
             <!-- Preview Image -->
-            <img class="img-fluid rounded" src="{% static 'blog/' %}{{ article.image }}" alt="">
+            <img class="img-fluid rounded" src="{{ article.image }}" alt="">
   
             <hr>
   
