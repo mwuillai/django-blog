@@ -18,6 +18,7 @@ class Article(generic.DetailView):
     model = Articles
     template_name = 'blog/article.html'
 
+
 def inscription(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -27,7 +28,9 @@ def inscription(request):
             raw_password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect ('home')
+            return redirect('home')
+        else:
+            return render(request, "index.html")
     else:
         form = UserCreationForm()
-    return render(request, 'blog/inscription.html',{'form':form})
+    return render(request, 'blog/inscription.html', {'form': form})
