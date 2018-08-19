@@ -1,14 +1,22 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
-
-class Users(models.Model):
-    username = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
-    email = models.EmailField(blank=True, null=True)
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     newsletter = models.BooleanField(default=False)
-    registration_date = models.DateTimeField(auto_now_add=True)
+    location = models.DateField(null=True, blank=True)
 
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
 
 class Articles(models.Model):
     title = models.CharField(max_length=200)
@@ -20,6 +28,6 @@ class Articles(models.Model):
 
 class Comments(models.Model):
     comment = models.TextField(blank=True, null=True)
-    user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
     article_id = models.ForeignKey(Articles, on_delete=models.CASCADE)
     creation_date = models.DateTimeField(auto_now_add=True)
