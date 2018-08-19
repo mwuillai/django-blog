@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.core.files.storage import FileSystemStorage
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -22,7 +23,7 @@ class Articles(models.Model):
     title = models.CharField(max_length=200)
     title2 = models.CharField(max_length=400)
     article = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to='blog/static/blog/article_image')
+    image = models.ImageField(upload_to='documents/')
     creation_date = models.DateTimeField(auto_now_add=True)
 
 
