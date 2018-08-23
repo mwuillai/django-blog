@@ -18,13 +18,15 @@ class Article(generic.DetailView):
     model = Articles
     template_name = 'blog/article.html'
 
-
+""" 
 def inscription(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get("username")
+        user_form = UserCreationForm(request.POST)
+        profile_form = ProfileForm(request.POST)
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            user.refresh_from_db()
+            profile_form = ProfileForm(request.POST, instance=user.profile)
             raw_password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=raw_password)
             login(request, user)
@@ -33,4 +35,4 @@ def inscription(request):
             return render(request, "index.html")
     else:
         form = UserCreationForm()
-    return render(request, 'blog/inscription.html', {'form': form})
+    return render(request, 'blog/inscription.html', {'form': form}) """
