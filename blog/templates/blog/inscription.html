@@ -3,6 +3,8 @@
     <h2>Inscription</h2>
     <form method="POST">
         {% csrf_token %}
+        {{ form }}
+        <button type="submit">Inscription</button>
         <div class="form-group row">
             <label for="username" class="col-sm-2 col-form-label">{{ form.username.label }}</label>
             <div class="col-sm-10">
