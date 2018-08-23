@@ -1,2 +1,8 @@
 blog/__pycache__/
-mywebsite/__pycache__/
+mw_website/__pycache__/
+virtualenv/
+blog/migrations/__pycache__/
+blog/migrations/
+mw_website/migrations
+settings.json
+*.swp
