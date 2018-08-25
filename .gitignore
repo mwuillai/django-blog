@@ -6,3 +6,5 @@ blog/migrations/
 mw_website/migrations
 settings.json
 *.swp
+blog\__pycache__\
+mw_website\__pycache__\
