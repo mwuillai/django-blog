@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Articles
 from django.views import generic
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
+from .forms import UserCreationForm
 
 # Create your views here.
 
@@ -18,16 +18,18 @@ class Article(generic.DetailView):
     model = Articles
     template_name = 'blog/article.html'
 
+
 def inscription(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get("username")
+            user = form.save()
             raw_password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect ('home')
+            return redirect('home')
+        else:
+            return render(request, "blog/index.html")
     else:
         form = UserCreationForm()
-    return render(request, 'blog/inscription.html',{'form':form})
+    return render(request, 'blog/inscription.html', {'form': form})

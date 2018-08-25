@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "blog/base.html" %}
 {% block content %}
 {% load static %}
@@ -8,11 +9,17 @@
         responsive, mobile-first projects on the web.</p>
     </div>
 </div>
+=======
+{% extends "blog/base.html" %} {% block content %} {% load static %}
+>>>>>>> bd1659a9af605c57fe296268ac60c5ba0bf50dfc
 <div class="container">
     <h2>Inscription</h2>
     <form method="POST">
         {% csrf_token %}
+        {{ form }}
+        <button type="submit">Inscription</button>
         <div class="form-group row">
+<<<<<<< HEAD
             <label for="email" class="col-sm-2 col-form-label">Mail</label>
             <div class="col-sm-10">
                 <input type="email" class="form-control" id="email" placeholder="E-mail">
@@ -32,28 +39,32 @@
         </div>
         <div class="form-group row">
             <label for="email" class="col-sm-2 col-form-label">E-mail</label>
+=======
+            <label for="username" class="col-sm-2 col-form-label">{{ form.username.label }}</label>
+>>>>>>> bd1659a9af605c57fe296268ac60c5ba0bf50dfc
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="email" placeholder="E-mail">
+                {{ form.username }}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="email" class="col-sm-2 col-form-label">{{ form.email.label }}</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="username">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="password1" class="col-sm-2 col-form-label">{{ form.password1.label }}</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="username" placeholder="Mot de passe">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="password2" class="col-sm-2 col-form-label">{{ form.password2.label }}</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="username">
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Inscription</button>
     </form>
 </div>
 {% endblock content %}
-
-<form>
-    <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
