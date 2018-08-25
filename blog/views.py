@@ -3,6 +3,7 @@ from .models import Articles
 from django.views import generic
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
+from .forms import ConnectionForm
 
 # Create your views here.
 
@@ -32,3 +33,17 @@ def inscription(request):
     else:
         form = UserCreationForm()
     return render(request, 'blog/inscription.html', {'form': form})
+
+def connexion(request):
+    if request.method == 'POST':
+        form = ConnectionForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=raw_password)
+            if user is not None:
+                login(request, user)
+                return redirect('index')
+    else:
+        form = ConnectionForm()
+    return render(request, "blog/connexion.html", {'form': form})

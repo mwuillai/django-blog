@@ -20,5 +20,6 @@ from . import views
 urlpatterns = [
     path('', views.index, name="index"),
     path('<int:pk>/', views.Article.as_view(), name='Article'),
-    path('inscription/', views.inscription, name="inscription")
+    path('inscription/', views.inscription, name="inscription"),
+    path('connexion/', views.connexion, name="connexion")    
 ]

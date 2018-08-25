@@ -1,0 +1,10 @@
+{% extends "blog/base.html" %} {% block content %} {% load static %}
+<div class="container">
+    <h2>Inscription</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Inscription</button>
+    </form>
+</div>
+{% endblock content %}
